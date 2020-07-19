@@ -1,0 +1,27 @@
+﻿@model EmployeeManagement.ViewModels.EmployeeForm
+@{
+    ViewBag.Title = "EmployeeForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employee Form</h2>
+@using(Html.BeginForm("Save", "Employees", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(e => e.Employee.Name)
+    @Html.TextBoxFor(e => e.Employee.Name, new { @class = "form-control" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(e => e.Employee.Email)
+    @Html.TextBoxFor(e => e.Employee.Email, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
+    @Html.DropDownListFor(e => e.Employee.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "Select Department", new { @class = "form-control" })
+</div>
+
+@Html.HiddenFor(e => e.Employee.Id)
+<input type="submit" value="Save" class="btn btn-primary"/>
+
+}
+
